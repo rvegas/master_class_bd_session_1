@@ -1,0 +1,135 @@
+Mongo
+
+Find:
+db.heroes.find({"name": “Pugna”})
+
+Like:
+db.items.find({“description”: /.*blade.*/})
+
+Greater:
+db.items.find({"cost": {$gt: 500}})
+
+Count:
+.count()
+
+
+New collection:
+use dota
+db.quests.insert({
+    "name": "find sword",
+    "description": "Find the hidden sword",
+    "exp": 500
+    })
+
+
+JOINS???
+db.heroes.find({})
+
+Añadir Columna
+db.heroes.update(
+	{"name": “Drow_Ranger”}, 
+        {$set : {"items": [] }},
+        {upsert:false, multi:true}
+)
+
+Añadir datos a nueva Columna
+db.heroes.update(
+	{"name": "Drow_Ranger"}, 
+	{$push: {items: 1}}
+)
+db.heroes.update({"name": "Drow_Ranger"}, {$push: {items: db.items.findOne()}})
+
+Ver datos de héroe con nuevo item:
+db.heroes.find({"name": “Drow_Ranger”})
+
+Cambiar el nombre de un item: Oh F*ck!
+db.items.update({"name": "Magic_Wand"}, {$set: {"name": “Ultra Magic Wand"}})
+db.heroes.update(
+    {"items": 
+           {$elemMatch: {"name": "Magic_Wand"}}}, 
+           {$set: {"items.$.name": “Ultra Magic Wand"}}
+           )
+
+Borrar datos:
+db.items.deleteOne( {} )
+db.heroes.update({ "name": "Pugna"},
+                      {$pull : { "items" : {"name":"Magic Wanda"} } } )
+
+Grouping:
+db.heroes.aggregate(
+    [
+     {
+         $group: { _id: "$type", total: {$sum: 1} }
+     }
+    ]
+)
+
+######
+
+PostgreSQL
+
+
+Find:
+SELECT * FROM heroes WHERE name = 'Invoker';
+
+Like:
+SELECT * FROM items WHERE description like '%blade%';
+
+Greater:
+SELECT * FROM items WHERE cost > 500;
+
+Count:
+SELECT COUNT(*) FROM skills;
+
+
+New Table:
+CREATE TABLE quests(
+   ID INT PRIMARY KEY      NOT NULL,
+   name           CHAR(50) NOT NULL,
+   description         CHAR(250) NOT NULL,
+   exp         INT      NOT NULL
+);
+INSERT INTO quests (name, description, exp) VALUES (“find sword”, “Find the hidden sword”, 500);
+
+
+Joins:
+SELECT * 
+	FROM heroes 
+	LEFT JOIN skills on skills.hero_id = heroes.id 
+	ORDER BY heroes.name DESC;
+
+Añadir nueva columna
+ALTER TABLE heroes ADD COLUMN items varchar(30); #??? IDs separados por coma???
+
+- Nueva tabla: Heroes_items
+
+CREATE TABLE public.heroes_items
+(
+  id integer NOT NULL DEFAULT nextval('heroes_items_id_seq'::regclass),
+  hero_id integer,
+  item_id integer,
+  obtained timestamp without time zone,
+  CONSTRAINT heroes_items_pkey PRIMARY KEY (id),
+  CONSTRAINT heroes_items_hero_id_fkey FOREIGN KEY (hero_id)
+      REFERENCES public.heroes (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT heroes_items_item_id_fkey FOREIGN KEY (item_id)
+      REFERENCES public.items (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+
+Añadir datos a nueva columna:
+INSERT into heroes_items (hero_id, item_id) VALUES (23,26)  
+
+Ver datos de heroes con nuevo item:
+SELECT * FROM heroes LEFT JOIN heroes_items ON heroes.id = heroes_items.hero_id LEFT JOIN items ON heroes_items.id = items.id WHERE heroes.id = 23;
+
+Cambiar el nombre de item:
+UPDATE items SET name = ‘mega sword’ WHERE id = 26;
+
+Borrar un item:
+DELETE FROM items WHERE id = 26;
+
+
+Grouping:
+SELECT type, count(*) FROM heroes GROUP BY type;

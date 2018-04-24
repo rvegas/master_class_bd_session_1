@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  psql:
+    build: postgres
+    ports:
+      - "5432:5432"
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+  mongo-seed:
+    build: mongo-seed
+    links:
+      - mongodb
+
