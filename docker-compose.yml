@@ -12,4 +12,10 @@ services:
     build: mongo-seed
     links:
       - mongodb
-
+  notebook:
+    build: notebook
+    ports:
+      - "8888:8888"
+    links:
+      - mongodb
+      - psql
