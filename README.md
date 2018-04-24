@@ -1,18 +1,18 @@
 # Master Class Bases de datos Session I [Dockerized]
 
-- Instalar docker:
+- Instalar docker:  
 https://store.docker.com/search?type=edition&offering=community
 
-- Instalar docker-compose (en linux solamente):
+- Instalar docker-compose (en linux solamente):  
 https://docs.docker.com/compose/install/
 
-- Instalar pgAdmin4:
+- Instalar pgAdmin4:  
 https://www.pgadmin.org/download/
 
-- Instalar NoSQL Booster:
-https://nosqlbooster.com/downloads
+- Instalar NoSQL Booster:  
+https://nosqlbooster.com/downloads  
 
-- Clonar este repositorio, entrar y ejecutar:
+- Clonar este repositorio, entrar y ejecutar:  
 ```
 docker-compose build
 docker-compose up -d
