@@ -6,9 +6,9 @@ FROM jupyter/base-notebook
 
 USER jovyan
 
+ADD work /home/jovyan/work
 RUN pip install psycopg2
 RUN pip install pymongo
 
 USER root
 
-ADD work /home/jovyan/work
