@@ -19,3 +19,9 @@ services:
     links:
       - mongodb
       - psql
+      - neo4j
+  neo4j:
+    image: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
