@@ -18,7 +18,10 @@ docker-compose build
 docker-compose up -d
 ```
 
-- Al terminar, ejecutar:
+- Al terminar la clase, ejecutar:
 ```
 docker-compose down
 ```
+## Links interesantes:
+
+- [Diagrama comparativo modelos](https://docs.google.com/drawings/d/1pncEgJMPd8r69JI0d9bn1tCCmSivYgzp7o-5kpBMeGs/edit?usp=sharing)
