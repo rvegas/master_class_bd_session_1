@@ -23,7 +23,7 @@ docker-compose up -d
 docker logs master_class_bd_session_1_notebook
 ```
   
-- Con el token puedes entrar en http://localhost:8888/ e introducirlo para comenzar.
+- Con el token puedes entrar en http://localhost:8888/ (http://192.168.99.100:8888 para usuarios de Docker Toolbox en Windows 10) e introducirlo para comenzar.
 
 - Al terminar la clase, ejecutar:
 ```
