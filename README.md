@@ -20,7 +20,7 @@ docker-compose up -d
   
 - Debeis obtener el token de jupyter que se encuentra en los logs:  
 ```
-docker logs master_class_bd_session_1_notebook
+docker logs master_class_bd_session_1_notebook_1
 ```
   
 - Con el token puedes entrar en http://localhost:8888/ (http://192.168.99.100:8888 para usuarios de Docker Toolbox en Windows 10) e introducirlo para comenzar.
