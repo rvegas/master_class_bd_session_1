@@ -17,6 +17,13 @@ https://nosqlbooster.com/downloads
 docker-compose build
 docker-compose up -d
 ```
+  
+- Debeis obtener el token de jupyter que se encuentra en los logs:  
+```
+docker logs notebook_1
+```
+  
+- Con el token puedes entrar en http://localhost:8888/ e introducirlo para comenzar.
 
 - Al terminar la clase, ejecutar:
 ```
