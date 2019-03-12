@@ -15,7 +15,7 @@ services:
   notebook:
     build: notebook
     ports:
-      - "50050:8888"
+      - "8888:8888"
     links:
       - mongodb
       - psql
