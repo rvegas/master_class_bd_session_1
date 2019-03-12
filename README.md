@@ -22,6 +22,13 @@ docker-compose up -d
 ```
 docker logs master_class_bd_session_1_notebook_1
 ```
+
+- Si os sale un error de carga de datos, o si al hacer queries con PostgreSQL os reporta 
+que no existen tablas, ejecutad lo siguiente despues de levantar todo con compose:  
+```
+docker exec -it master_class_bd_session_1_psql_1 /bin/bash
+psql -U dota dota < /docker-entrypoint-initdb.d/dota.sql
+```
   
 - Con el token puedes entrar en http://localhost:8888/ (http://192.168.99.100:8888 para usuarios de Docker Toolbox en Windows 10) e introducirlo para comenzar.
 

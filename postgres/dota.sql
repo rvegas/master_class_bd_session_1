@@ -43,7 +43,7 @@ DROP SCHEMA IF EXISTS public;
 CREATE SCHEMA public;
 
 
-ALTER SCHEMA public OWNER TO postgres;
+ALTER SCHEMA public OWNER TO dota;
 
 --
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
